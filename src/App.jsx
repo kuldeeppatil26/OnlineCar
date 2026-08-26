@@ -592,8 +592,10 @@ function CustomerBookingRow({ booking, onExtend, onCancel, onRateHost, policy })
         </div>
       )}
       {booking.status === "completed" && booking.damage && (
-        <p className="text-xs font-bold flex items-center gap-1.5" style={{ color: DANGER }}><AlertTriangle size={13} /> Damage noted by host: {booking.damage.description} (₹{booking.damage.amount}) · {booking.damage.severity}</p>
-        <p className="text-[10px] font-medium" style={{ color: MUTED }}>Damage review: {booking.damage.status} · Evidence {booking.damage.photos?.length || 0} photo(s)</p>
+        <>
+          <p className="text-xs font-bold flex items-center gap-1.5" style={{ color: DANGER }}><AlertTriangle size={13} /> Damage noted by host: {booking.damage.description} (₹{booking.damage.amount}) · {booking.damage.severity}</p>
+          <p className="text-[10px] font-medium" style={{ color: MUTED }}>Damage review: {booking.damage.status} · Evidence {booking.damage.photos?.length || 0} photo(s)</p>
+        </>
       )}
       {booking.status === "cancelled" && (
         <p className="text-xs font-medium" style={{ color: MUTED }}>Cancelled by {booking.cancelledBy} · {booking.cancelReason} {booking.cancelFee > 0 ? `· Fee ₹${booking.cancelFee}` : "· No fee"} · Refund ₹{booking.refundAmount || 0} · {fmtDateTime(booking.cancelledAt)}</p>
@@ -919,8 +921,10 @@ function HostBookingRow({ booking, policy, onStart, onEnd, onCancel, onDamage, o
       </div>
 
       {booking.status === "completed" && booking.damage && (
-        <p className="text-xs font-bold flex items-center gap-1.5" style={{ color: DANGER }}><AlertTriangle size={13} /> Damage: {booking.damage.description} — ₹{booking.damage.amount} · {booking.damage.severity}</p>
-        <p className="text-[10px] font-medium" style={{ color: MUTED }}>Evidence: {booking.damage.photos?.length || 0} photo(s) · Reported {fmtDateTime(booking.damage.reportedAt)} · {booking.damage.status}</p>
+        <>
+          <p className="text-xs font-bold flex items-center gap-1.5" style={{ color: DANGER }}><AlertTriangle size={13} /> Damage: {booking.damage.description} — ₹{booking.damage.amount} · {booking.damage.severity}</p>
+          <p className="text-[10px] font-medium" style={{ color: MUTED }}>Evidence: {booking.damage.photos?.length || 0} photo(s) · Reported {fmtDateTime(booking.damage.reportedAt)} · {booking.damage.status}</p>
+        </>
       )}
       {booking.status === "completed" && booking.customerRating && (
         <p className="text-xs font-bold flex items-center gap-1" style={{ color: AMBER }}>You rated this customer <Star size={12} fill={AMBER} color={AMBER} /> {booking.customerRating.stars}</p>
